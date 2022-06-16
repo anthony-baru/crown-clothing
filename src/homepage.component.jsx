@@ -12,7 +12,7 @@ const Homepage = () => {
         <div className="menu-item">
           <div className="content">
             <h1 className="title">JACKETS</h1>
-            <span className="subtitle">SHOP NOW</span>
+            <span className="subtitle">SHOP NO</span>
           </div>
         </div>
         <div className="menu-item">
