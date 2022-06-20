@@ -1,6 +1,11 @@
 body{
 font-family: 'Bigelow Rules', cursive;
 font-family: 'Open Sans', sans-serif;
+padding:20px 60px;
+}
+a{
+  text-decoration: none;
+  color: black;
 }
 /* .App {
   text-align: center;
