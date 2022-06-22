@@ -2,16 +2,25 @@ import React, { Component } from "react";
 import "./sign-in.styles.scss";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
-import { signInWithGoogle } from "../../firebase/firebase.utils";
+import {auth, signInWithGoogle} from "../../firebase/firebase.utils";
+import { toast } from "react-toastify";
+
 class SignIn extends Component {
   state = {
     email: "",
     password: "",
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = async(e) => {
     e.preventDefault();
-    this.setState({ email: "", password: "" });
+    const {email, password} = this.state;
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      this.setState({ email: "", password: "" });
+      toast.success("Successfully signed in!");
+    } catch (error) {
+        toast.error(error.message);
+    }
   };
 
   handleChange = (e) => {
