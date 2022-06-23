@@ -4,9 +4,11 @@ import CustomButton from "../custom-button/custom-button.component";
 import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
 import { toast } from "react-toastify";
 import "./sign-up.styles.scss";
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
+
 
 class SignUp extends Component {
-  state = { displayName: "", email: "", password: "", confirmPassword: "" };
+  state = { displayName: "", email: "", password: "", confirmPassword: "",loading:false };
   render() {
     const { displayName, email, password, confirmPassword } = this.state;
     return (
@@ -47,7 +49,7 @@ class SignUp extends Component {
             label="Confirm Password"
             required
           ></FormInput>
-          <CustomButton type="submit">Sign Up</CustomButton>
+          <CustomButton loading={this.state.loading} startIcon={<AppRegistrationIcon/>} type="submit">Sign Up</CustomButton>
         </form>
       </div>
     );
@@ -63,7 +65,7 @@ class SignUp extends Component {
 
     try {
       const { displayName, email, password, confirmPassword } = this.state;
-
+        this.setState({ loading: true });
       if (password !== confirmPassword) {
         toast.error("Passwords do not match.");
         return;
@@ -79,9 +81,11 @@ class SignUp extends Component {
         email: "",
         password: "",
         confirmPassword: "",
+        loading: false,
       });
       toast.success(`Registration successful. You can login.`);
     } catch (e) {
+      this.setState({ loading: false });
       toast.error(`Error occurred ${e.message}`);
     }
   };
