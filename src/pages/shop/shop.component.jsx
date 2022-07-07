@@ -1,14 +1,12 @@
 import React from "react";
-import CollectionPreview from "../../components/preview-collection/collection-preview.component";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectCollections } from "../../redux/shop/shop.selector.js";
+import CollectionsOverview from "../../components/collections-overview/collections-overview.component";
 const ShopPage = ({ collections }) => {
   return (
     <div className="shop-page">
-      {collections.map(({ id, ...otherCollectionProps }) => (
-        <CollectionPreview key={id} {...otherCollectionProps} />
-      ))}
+      <CollectionsOverview />
     </div>
   );
 };
